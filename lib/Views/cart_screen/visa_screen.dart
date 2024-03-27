@@ -1,4 +1,13 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
+import 'package:flutter_finalproject/Views/home_screen/navigationBar.dart';
+import 'package:flutter_finalproject/consts/consts.dart';
+import 'package:flutter_finalproject/consts/lists.dart';
+import 'package:flutter_finalproject/controllers/cart_controller.dart';
+import 'package:get/get.dart';
+import 'package:http/http.dart' as http;
+import 'package:omise_flutter/omise_flutter.dart';
 
 void main() {
   runApp(MyApp());
@@ -20,14 +29,85 @@ class MyApp extends StatelessWidget {
 
 class VisaCardScreen extends StatefulWidget {
   const VisaCardScreen({Key? key}) : super(key: key);
-
+  
   @override
+  
   _VisaCardScreenState createState() => _VisaCardScreenState();
 }
 
 class _VisaCardScreenState extends State<VisaCardScreen> {
+  var controller = Get.find<CartController>();
   String cardHolderName = 'Card owner\'s name';
   String cardNumber = '1234 5678 9876 5432';
+
+
+  getTokenandSourceTest() async {
+    OmiseFlutter omise = OmiseFlutter('pkey_test_5yzhwpn9nih3syz8e2v');
+    await omise.token.create("John Doe", "4111111111140011", "12", "2026", "123").then((value) async {String token = value.id.toString();
+    print(token);
+
+    String secreKey = 'skey_test_5yzhwpoh5cu85yb4qrr';
+    String urlAPI = 'https://api.omise.co/charges';
+    String basicAuth = 'Basic ' + base64Encode(utf8.encode(secreKey + ":"));
+
+    Map<String, String> headerMap = {};
+    headerMap['authorization'] = basicAuth;
+    headerMap['Cache-Control'] = 'no-cache';
+    headerMap['Content-Type'] = 'application/x-www-form-urlencoded';
+
+    Map<String, dynamic> data = {};
+    data['amount'] = controller.totalP.value.toString();
+    data['currency'] = 'thb';
+    data['card'] = token;
+
+    print(controller.totalP.value.toString());
+
+    Uri uri = Uri.parse(urlAPI);
+
+    http.Response response = await http.post(uri,headers: headerMap, body: data,);
+
+    var resultCharge = jsonDecode(response.body);
+    print('status ของการตัดบัตร ===> ${resultCharge['status']}');
+
+      if (resultCharge['status'] == 'successful') {
+        _showSuccessDialog();
+      }
+      else if (resultCharge['status'] == 'failed') {
+        VxToast.show(context, msg: "Wrong your card or informaton");
+      }
+      else {
+        VxToast.show(context, msg: "Wrong your card or informaton");
+      }
+    });
+  }
+
+void _showSuccessDialog() {
+  showDialog(
+    context: context,
+    builder: (BuildContext context) {
+      return AlertDialog(
+        title: Text('ชำระเงินเสร็จสิ้น'),
+        content: Text('การชำระเงินของคุณเสร็จสิ้นแล้ว'),
+        actions: <Widget>[
+          ElevatedButton(
+            child: Text('ตกลง'),
+            onPressed: () {
+              Navigator.of(context).pop(); // ปิด dialog
+            },
+          ),
+        ],
+      );
+    },
+  ).then((_) async {
+    String selectedPaymentMethod = paymentMethods[controller.paymentIndex.value];
+    await controller.placeMyOrder(
+      orderPaymentMethod: selectedPaymentMethod,
+      totalAmount: controller.totalP.value,
+    );
+
+    Get.offAll(() => MainNavigationBar());
+  });
+}
 
   void _updateCardHolderName(String newName) {
     setState(() {
@@ -94,7 +174,7 @@ class _VisaCardScreenState extends State<VisaCardScreen> {
           SizedBox(height: 24),
           ElevatedButton(
             child: Text('Confirm'),
-            onPressed: () {},
+            onPressed: () {getTokenandSourceTest();},
           ),
         ],
       ),
