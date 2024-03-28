@@ -51,11 +51,11 @@ class _QRScreenState extends State<QRScreen> {
       print('Charge created: ${resultCharge['id']}');
 
     // ตรวจสอบและเข้าถึง download_uri
-    String? downloadUri = resultCharge['source']?['scannable_code']?['image']?['download_uri'];
+    downloadUri = resultCharge['source']?['scannable_code']?['image']?['download_uri'];
     if (downloadUri != null) {
-      print('Download URI: $downloadUri');
       setState(() {
         downloadUri = resultCharge['source']['scannable_code']['image']['download_uri'];
+        print('Dddddddddd: $downloadUri');
         });
     } else {
       print('Download URI not found');
@@ -70,20 +70,14 @@ class _QRScreenState extends State<QRScreen> {
     return Scaffold(
       appBar: AppBar(
         title: Text('Display QR Code'),
+        backgroundColor: whiteColor,
       ),
       body: Center(
-        child: downloadUri != null
-            ? Container(
+        child: Container(
                 width: 200,
                 height: 200,
-                child: SvgPicture.network(
-                  downloadUri!,
-                  placeholderBuilder: (BuildContext context) => Container(
-                      padding: const EdgeInsets.all(30.0),
-                      child: const CircularProgressIndicator()),
-                ),
+                child: Text(downloadUri ?? "no imgs"),
               )
-            : CircularProgressIndicator(),
       ),
     );
   }
