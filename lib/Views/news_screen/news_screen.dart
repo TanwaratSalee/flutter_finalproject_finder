@@ -1,11 +1,13 @@
 // ignore_for_file: unused_local_variable, sort_child_properties_last
 
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_finalproject/Views/cart_screen/cart_screen.dart';
 import 'package:flutter_finalproject/Views/store_screen/item_details.dart';
 import 'package:flutter_finalproject/Views/collection_screen/loading_indicator.dart';
 import 'package:flutter_finalproject/Views/search_screen/search_screen.dart';
+import 'package:flutter_finalproject/Views/store_screen/match_detail_screen.dart';
 import 'package:flutter_finalproject/Views/widgets_common/home_buttons.dart';
 import 'package:flutter_finalproject/consts/colors.dart';
 import 'package:flutter_finalproject/consts/images.dart';
@@ -22,76 +24,74 @@ class NewsScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    
     var allproducts = '';
     var controller = Get.find<NewsController>();
 
     return Scaffold(
       appBar: AppBar(
-          backgroundColor: whiteColor,
-          leading: Padding(
-            padding: const EdgeInsets.only(left: 15.0),
+        backgroundColor: whiteColor,
+        leading: Padding(
+          padding: const EdgeInsets.only(left: 15.0),
+          child: IconButton(
+            icon: Image.asset(
+              icSearch,
+              width: 23,
+            ),
+            onPressed: () {
+              showGeneralDialog(
+                barrierLabel: "Barrier",
+                barrierDismissible: true,
+                barrierColor: Colors.black.withOpacity(0.5),
+                transitionDuration: const Duration(milliseconds: 300),
+                context: context,
+                pageBuilder: (_, __, ___) {
+                  return Align(
+                    alignment: Alignment.topCenter,
+                    child: Container(
+                      height: MediaQuery.of(context).size.height * 0.6,
+                      width: MediaQuery.of(context).size.width,
+                      child: const SearchScreenPage(),
+                      decoration: const BoxDecoration(
+                        color: whiteColor,
+                        borderRadius: BorderRadius.only(
+                          bottomLeft: Radius.circular(18),
+                          bottomRight: Radius.circular(18),
+                        ),
+                      ),
+                      padding: const EdgeInsets.all(20),
+                    ),
+                  );
+                },
+                transitionBuilder: (context, anim1, anim2, child) {
+                  return SlideTransition(
+                    position: Tween(
+                            begin: const Offset(0, -1), end: const Offset(0, 0))
+                        .animate(anim1),
+                    child: child,
+                  );
+                },
+              );
+            },
+          ),
+        ),
+        title: Center(
+          child: Image.asset(icLogoOnTop, height: 40),
+        ),
+        actions: <Widget>[
+          Padding(
+            padding: const EdgeInsets.only(right: 15.0),
             child: IconButton(
               icon: Image.asset(
-                icSearch,
-                width: 23,
+                icCart,
+                width: 21,
               ),
               onPressed: () {
-                showGeneralDialog(
-                  barrierLabel: "Barrier",
-                  barrierDismissible: true,
-                  barrierColor: Colors.black.withOpacity(0.5),
-                  transitionDuration: const Duration(milliseconds: 300),
-                  context: context,
-                  pageBuilder: (_, __, ___) {
-                    return Align(
-                      alignment:
-                          Alignment.topCenter, 
-                      child: Container(
-                        height: MediaQuery.of(context).size.height *
-                            0.6, 
-                        width: MediaQuery.of(context).size.width,
-                        child: const SearchScreenPage(), 
-                        decoration: const BoxDecoration(
-                          color: whiteColor,
-                          borderRadius: BorderRadius.only(
-                            bottomLeft: Radius.circular(18),
-                            bottomRight: Radius.circular(18),
-                          ),
-                        ),
-                        padding: const EdgeInsets.all(20),
-                      ),
-                    );
-                  },
-                  transitionBuilder: (context, anim1, anim2, child) {
-                    return SlideTransition(
-                      position: Tween(begin: const Offset(0, -1), end: const Offset(0, 0))
-                          .animate(anim1),
-                      child: child,
-                    );
-                  },
-                );
+                Get.to(() => const CartScreen());
               },
             ),
           ),
-          title: Center(
-            child: Image.asset(icLogoOnTop, height: 40),
-          ),
-          actions: <Widget>[
-            Padding(
-              padding: const EdgeInsets.only(right: 15.0),
-              child: IconButton(
-                icon: Image.asset(
-                  icCart,
-                  width: 21,
-                ),
-                onPressed: () {
-                  Get.to(() => const CartScreen());
-                },
-              ),
-            ),
-          ],
-        ),
+        ],
+      ),
       body: Container(
         padding: const EdgeInsets.all(12),
         color: bgGreylight,
@@ -122,7 +122,7 @@ class NewsScreen extends StatelessWidget {
             //     ),
             //   ),
             // ),
-      
+
             // 1nd swiper
             Expanded(
               child: SingleChildScrollView(
@@ -146,9 +146,34 @@ class NewsScreen extends StatelessWidget {
                               .margin(const EdgeInsets.symmetric(horizontal: 8))
                               .make();
                         }),
-      
-                    10.heightBox,
-      
+
+                    SizedBox(
+                      height: 15,
+                    ),
+
+                    Column(
+                      children: [
+                        Container(
+                          width: 400,
+                          height: 500,
+                          color: Colors.white,
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              Text('Hello World'), // แสดงข้อความ
+                              SizedBox(height: 20), // เพิ่มพื้นที่ว่าง
+                              MyCustomWidget(
+                                  Category as String), // แสดง custom widget
+                              // เพิ่ม widget อื่นๆ ตามที่คุณต้องการ
+                            ],
+                          ),
+                        ),
+                      ],
+                    ),
+
+                    SizedBox(
+                      height: 15,
+                    ),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                       children: List.generate(
@@ -161,9 +186,9 @@ class NewsScreen extends StatelessWidget {
                         ),
                       ),
                     ),
-      
+
                     10.heightBox,
-      
+
                     // 2nd swiper
                     VxSwiper.builder(
                         aspectRatio: 16 / 9,
@@ -182,9 +207,9 @@ class NewsScreen extends StatelessWidget {
                               .margin(const EdgeInsets.symmetric(horizontal: 8))
                               .make();
                         }),
-      
+
                     10.heightBox,
-      
+
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                       children: List.generate(
@@ -205,7 +230,7 @@ class NewsScreen extends StatelessWidget {
                         ),
                       ),
                     ),
-      
+
                     20.heightBox,
                     // Align(
                     //     alignment: Alignment.centerLeft,
@@ -215,7 +240,7 @@ class NewsScreen extends StatelessWidget {
                     //         .fontFamily(regular)
                     //         .make()),
                     // 20.heightBox,
-      
+
                     // SingleChildScrollView(
                     //   scrollDirection: Axis.horizontal,
                     //   child: Row(
@@ -234,9 +259,9 @@ class NewsScreen extends StatelessWidget {
                     //             )),
                     //   ),
                     // ),
-      
+
                     // 20.heightBox,
-      
+
                     // Container(
                     //   padding: const EdgeInsets.all(12),
                     //   width: double.infinity,
@@ -254,7 +279,7 @@ class NewsScreen extends StatelessWidget {
                     //         child: FutureBuilder(
                     //           future: FirestoreServices.getFeaturedProducts(),
                     //           builder: (context,AsyncSnapshot<QuerySnapshot> snapshot) {
-      
+
                     //             if(!snapshot.hasData) {
                     //               return Center(
                     //                 child: loadingIndcator(),
@@ -262,11 +287,11 @@ class NewsScreen extends StatelessWidget {
                     //             } else if (snapshot.data!.docs.isEmpty) {
                     //               return "No featured products".text.white.makeCentered();
                     //             } else {
-      
+
                     //               var featuredData = snapshot.data!.docs;
-      
+
                     //               return Row(
-                    //               children: List.generate( 
+                    //               children: List.generate(
                     //                 featuredData.length,
                     //                 (index) => Column(
                     //                   crossAxisAlignment: CrossAxisAlignment.start,
@@ -312,9 +337,9 @@ class NewsScreen extends StatelessWidget {
                     //     ],
                     //   ),
                     // ),
-      
+
                     // 20.heightBox,
-      
+
                     // 3nd swiper
                     // VxSwiper.builder(
                     //     aspectRatio: 16 / 9,
@@ -333,68 +358,79 @@ class NewsScreen extends StatelessWidget {
                     //           .margin(const EdgeInsets.symmetric(horizontal: 8))
                     //           .make();
                     //     }),
-      
+
                     20.heightBox,
                     Align(
-                      alignment: Alignment.centerLeft,
-                      child: allproducts.text.fontFamily(regular).color(fontGreyDark).size(18).make()),
+                        alignment: Alignment.centerLeft,
+                        child: allproducts.text
+                            .fontFamily(regular)
+                            .color(fontGreyDark)
+                            .size(18)
+                            .make()),
                     20.heightBox,
-      
+
                     StreamBuilder(
-                      stream: FirestoreServices.allproducts(), 
-                      builder: (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot){
-                        if(!snapshot.hasData){
-                          return loadingIndcator();
-                        } else {
-                          var allproductsdata = snapshot.data!.docs;
-                          return GridView.builder(
-                      physics: const NeverScrollableScrollPhysics(),
-                      shrinkWrap: true,
-                      itemCount: allproductsdata.length,
-                        gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                          crossAxisCount: 2, mainAxisSpacing: 8, crossAxisSpacing:8, mainAxisExtent: 310),
-                        itemBuilder: (context, index) {
-                          return Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                                        children: [
-                                          Image.network(
-                                            allproductsdata[index]['p_imgs'][0],
-                                            width: 170,
-                                            height: 210,
-                                            fit: BoxFit.cover,
-                                          ),
-                                          const Spacer(),
-                                          "${allproductsdata[index]['p_name']}"
-                                              .text
-                                              .fontFamily(bold)
-                                              .size(14)
-                                              .color(fontBlack)
-                                              .make(),
-                                              
-                                          "${allproductsdata[index]['p_price']}"
-                                              .text
-                                              .color(primaryApp)
-                                              .fontFamily(regular)
-                                              .size(14)
-                                              .make(),
-                                              10.heightBox,
-                                        ],
-                                      )
-                                          .box
-                                          .white
-                                          .margin(
-                                              const EdgeInsets.symmetric(horizontal: 2))
-                                          .rounded
-                                          .padding(const EdgeInsets.all(12))
-                                          .make().onTap(() {
-                                            Get.to(( )=> ItemDetails(
-                                              title: "${allproductsdata[index]['p_name']}",
-                                              data: allproductsdata[index],
-                                              ));
-                                          });
-                        });
-                        }
-                      }),
+                        stream: FirestoreServices.allproducts(),
+                        builder: (BuildContext context,
+                            AsyncSnapshot<QuerySnapshot> snapshot) {
+                          if (!snapshot.hasData) {
+                            return loadingIndcator();
+                          } else {
+                            var allproductsdata = snapshot.data!.docs;
+                            return GridView.builder(
+                                physics: const NeverScrollableScrollPhysics(),
+                                shrinkWrap: true,
+                                itemCount: allproductsdata.length,
+                                gridDelegate:
+                                    const SliverGridDelegateWithFixedCrossAxisCount(
+                                        crossAxisCount: 2,
+                                        mainAxisSpacing: 8,
+                                        crossAxisSpacing: 8,
+                                        mainAxisExtent: 310),
+                                itemBuilder: (context, index) {
+                                  return Column(
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                    children: [
+                                      Image.network(
+                                        allproductsdata[index]['p_imgs'][0],
+                                        width: 170,
+                                        height: 210,
+                                        fit: BoxFit.cover,
+                                      ),
+                                      const Spacer(),
+                                      "${allproductsdata[index]['p_name']}"
+                                          .text
+                                          .fontFamily(bold)
+                                          .size(14)
+                                          .color(fontBlack)
+                                          .make(),
+                                      "${allproductsdata[index]['p_price']}"
+                                          .text
+                                          .color(primaryApp)
+                                          .fontFamily(regular)
+                                          .size(14)
+                                          .make(),
+                                      10.heightBox,
+                                    ],
+                                  )
+                                      .box
+                                      .white
+                                      .margin(const EdgeInsets.symmetric(
+                                          horizontal: 2))
+                                      .rounded
+                                      .padding(const EdgeInsets.all(12))
+                                      .make()
+                                      .onTap(() {
+                                    Get.to(() => ItemDetails(
+                                          title:
+                                              "${allproductsdata[index]['p_name']}",
+                                          data: allproductsdata[index],
+                                        ));
+                                  });
+                                });
+                          }
+                        }),
                   ],
                 ),
               ),
@@ -406,4 +442,110 @@ class NewsScreen extends StatelessWidget {
   }
 }
 
-
+Widget MyCustomWidget(String category) {
+  return GridView.builder(
+    padding: EdgeInsets.all(2),
+    gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+      crossAxisCount: 2,
+      childAspectRatio: 1 / 1,
+    ),
+    itemBuilder: (BuildContext context, int index) {
+      String productName1 = "Product $index A";
+      double price1 = 100.0;
+      String productName2 = "Product $index B";
+      double price2 = 150.0;
+      double totalPrice = price1 + price2;
+      return GestureDetector(
+        onTap: () {
+          // Add navigation to ItemMatching page here
+          Navigator.push(
+            context,
+            MaterialPageRoute(
+                builder: (context) =>
+                    MatchDetailScreen()), // Ensure you have a class named ItemMatching
+          );
+        },
+        child: Card(
+          clipBehavior: Clip.antiAlias,
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: <Widget>[
+              Row(
+                children: [
+                  Column(
+                    children: [
+                      Image.asset(
+                        card1,
+                        width: 80,
+                        height: 80,
+                      ),
+                      Image.asset(
+                        card2,
+                        width: 80,
+                        height: 80,
+                      ),
+                    ],
+                  ),
+                  Expanded(
+                    child: Padding(
+                      padding: const EdgeInsets.all(8),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: <Widget>[
+                          SizedBox(
+                            height: 2,
+                          ),
+                          Text(
+                            productName1,
+                            style: TextStyle(
+                              fontWeight: FontWeight.bold,
+                            ),
+                          ),
+                          Text(
+                            'Price: \$${price1.toString()}',
+                            style: TextStyle(
+                              color: Colors.grey,
+                            ),
+                          ),
+                          SizedBox(
+                            height: 20,
+                          ),
+                          Text(
+                            productName2,
+                            style: TextStyle(
+                              fontWeight: FontWeight.bold,
+                            ),
+                          ),
+                          Text(
+                            'Price: \$${price2.toString()}',
+                            style: TextStyle(
+                              color: Colors.grey,
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+              SizedBox(
+                height: 10,
+              ),
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 8),
+                child: Text(
+                  'Total Price: \$${totalPrice.toString()}',
+                  style: TextStyle(
+                    color: Colors.black,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+              ),
+            ],
+          ),
+        ),
+      );
+    },
+    itemCount: 50,
+  );
+}
