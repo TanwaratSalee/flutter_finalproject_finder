@@ -160,11 +160,8 @@ class NewsScreen extends StatelessWidget {
                           child: Column(
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
-                              Text('Hello World'), // แสดงข้อความ
-                              SizedBox(height: 20), // เพิ่มพื้นที่ว่าง
-                              MyCustomWidget(
-                                  Category as String), // แสดง custom widget
-                              // เพิ่ม widget อื่นๆ ตามที่คุณต้องการ
+                              Text('Hello World'),
+                              SizedBox(height: 20),
                             ],
                           ),
                         ),
