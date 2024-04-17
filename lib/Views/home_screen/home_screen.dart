@@ -190,7 +190,7 @@ class _HomeScreenState extends State<HomeScreen> {
                         IconButton(
                           icon: Image.asset(
                             icDislikeButton,
-                            width: 62,
+                            width: 55,
                           ).box.roundedFull.shadowSm.make(),
                           onPressed: () =>
                               controllercard.swipe(CardSwiperDirection.left),
@@ -198,7 +198,7 @@ class _HomeScreenState extends State<HomeScreen> {
                         IconButton(
                           icon: Image.asset(
                             icViewMoreButton,
-                            width: 62,
+                            width: 55,
                           ).box.roundedFull.shadowSm.make(),
                           onPressed: () {
                             Get.to(() => ItemDetails(
@@ -210,7 +210,7 @@ class _HomeScreenState extends State<HomeScreen> {
                         IconButton(
                           icon: Image.asset(
                             icLikeButton,
-                            width: 62,
+                            width: 55,
                           ).box.roundedFull.shadowSm.make(),
                           onPressed: () => [
                             controllercard.swipe(CardSwiperDirection.right),
