@@ -28,31 +28,30 @@ class ProductScreen extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             Row(
-  children: [
-    SizedBox(
-      width: 10,
-    ),
-    Image.asset(icLogoOnTop, height: 40),
-    Expanded(
-      child: Align(
-        alignment: Alignment.centerRight,
-        child: Padding(
-          padding: const EdgeInsets.only(right: 10.0),
-          child: IconButton(
-            icon: Image.asset(
-              icCart,
-              width: 21,
+              children: [
+                SizedBox(
+                  width: 10,
+                ),
+                Image.asset(icLogoOnTop, height: 40),
+                Expanded(
+                  child: Align(
+                    alignment: Alignment.centerRight,
+                    child: Padding(
+                      padding: const EdgeInsets.only(right: 10.0),
+                      child: IconButton(
+                        icon: Image.asset(
+                          icCart,
+                          width: 21,
+                        ),
+                        onPressed: () {
+                          Get.to(() => const CartScreen());
+                        },
+                      ),
+                    ),
+                  ),
+                ),
+              ],
             ),
-            onPressed: () {
-              Get.to(() => const CartScreen());
-            },
-          ),
-        ),
-      ),
-    ),
-  ],
-),
-
           ],
         ),
       ),
@@ -125,8 +124,8 @@ class ProductScreen extends StatelessWidget {
                                           maxLines: 1,
                                           overflow: TextOverflow.ellipsis,
                                         ),
-                                        "${NumberFormat('#,##0').format(double.parse(allproductsdata[index]['p_price']).toInt())} Bath" 
-                                        .text
+                                        "${NumberFormat('#,##0').format(double.parse(allproductsdata[index]['p_price']).toInt())} Bath"
+                                            .text
                                             .color(greyDark1)
                                             .fontFamily(regular)
                                             .size(14)

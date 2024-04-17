@@ -367,7 +367,7 @@ class NewsScreen extends StatelessWidget {
                                     child: Column(
                                       crossAxisAlignment:
                                           CrossAxisAlignment.start,
-                                          // mainAxisAlignment: MainAxisAlignment.start,
+                                      // mainAxisAlignment: MainAxisAlignment.start,
                                       children: [
                                         Text(
                                           "${allproductsdata[index]['p_name']}",
@@ -415,13 +415,12 @@ class NewsScreen extends StatelessWidget {
                       },
                     ),
 
-
                     Column(
                       mainAxisSize: MainAxisSize.min,
                       crossAxisAlignment: CrossAxisAlignment.center,
                       children: [
                         const SizedBox(height: 20),
-                                'MATCH BY STORE'
+                        'MATCH BY STORE'
                             .text
                             .fontFamily(medium)
                             .color(greyDark2)
@@ -440,7 +439,7 @@ class NewsScreen extends StatelessWidget {
                             child: _buildProductMathGrids(category),
                           ),
                         )
-                        ],
+                      ],
                     ),
 
                     30.heightBox,
@@ -515,7 +514,7 @@ class NewsScreen extends StatelessWidget {
                                     child: Column(
                                       crossAxisAlignment:
                                           CrossAxisAlignment.start,
-                                          // mainAxisAlignment: MainAxisAlignment.start,
+                                      // mainAxisAlignment: MainAxisAlignment.start,
                                       children: [
                                         Text(
                                           "${allproductsdata[index]['p_name']}",
@@ -528,9 +527,10 @@ class NewsScreen extends StatelessWidget {
                                           overflow: TextOverflow
                                               .ellipsis, // ใช้ ellipsis สำหรับข้อความที่เกิน
                                         ),
-                                        Text("${NumberFormat('#,##0').format(double.parse(allproductsdata[index]['p_price']).toInt())} Bath",
-                                        // Text(
-                                        //   "${allproductsdata[index]['p_price']} Bath",
+                                        Text(
+                                          "${NumberFormat('#,##0').format(double.parse(allproductsdata[index]['p_price']).toInt())} Bath",
+                                          // Text(
+                                          //   "${allproductsdata[index]['p_price']} Bath",
                                           style: const TextStyle(
                                             fontFamily: regular,
                                             fontSize: 14,
@@ -581,12 +581,14 @@ class NewsScreen extends StatelessWidget {
                           10.widthBox,
                           Image.asset(
                             icNext,
-                            width: 17,
+                            width: 12,
                           )
                         ],
                       ),
                     ),
-                    SizedBox(height: 20,)
+                    SizedBox(
+                      height: 20,
+                    )
                   ],
                 ),
               ),
@@ -763,39 +765,33 @@ class NewsScreen extends StatelessWidget {
                             height: 10,
                           ),
                           Row(
-                                    children: [
-                                      Text(
-                                        "Total Price ",
-                                        style: TextStyle(
-                                          color:
-                                              greyDark2, 
-                                          fontFamily:
-                                              'regular', 
-                                          fontSize: 12,
-                                        ),
-                                      ),
-                                      Text(
-                                        "${NumberFormat('#,##0').format(double.parse(totalPrice.toString()).toInt())} ",
-                                        style: TextStyle(
-                                          color:
-                                              greyDark2, 
-                                          fontFamily:
-                                              'medium', 
-                                          fontSize: 14,
-                                        ),
-                                      ),
-                                      Text(
-                                        "Bath",
-                                        style: TextStyle(
-                                          color:
-                                              greyDark2, 
-                                          fontFamily:
-                                              'regular', 
-                                          fontSize: 12,
-                                        ),
-                                      ),
-                                    ],
-                                  )
+                            children: [
+                              Text(
+                                "Total Price ",
+                                style: TextStyle(
+                                  color: greyDark2,
+                                  fontFamily: 'regular',
+                                  fontSize: 12,
+                                ),
+                              ),
+                              Text(
+                                "${NumberFormat('#,##0').format(double.parse(totalPrice.toString()).toInt())} ",
+                                style: TextStyle(
+                                  color: greyDark2,
+                                  fontFamily: 'medium',
+                                  fontSize: 14,
+                                ),
+                              ),
+                              Text(
+                                "Bath",
+                                style: TextStyle(
+                                  color: greyDark2,
+                                  fontFamily: 'regular',
+                                  fontSize: 12,
+                                ),
+                              ),
+                            ],
+                          )
                         ],
                       )
                           .box
