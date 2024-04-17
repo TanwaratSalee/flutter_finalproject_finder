@@ -49,6 +49,7 @@ dependencies:
   google_sign_in: ^6.2.1
   flutter_facebook_auth: ^6.0.4
   flutter_marquee: ^2.0.1 
+<<<<<<< HEAD
   path: ^1.8.0 
   qr_flutter: ^4.0.0
   
@@ -58,6 +59,10 @@ dependencies:
   cached_network_image: ^3.1.0
   
 
+=======
+  cached_network_image: ^3.1.0
+  pattern_formatter: ^3.0.0
+>>>>>>> de1ef8a (ฦฦฦฦ)
 dev_dependencies:
   flutter_test:
     sdk: flutter
