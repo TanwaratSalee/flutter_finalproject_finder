@@ -28,31 +28,30 @@ class ProductScreen extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             Row(
-  children: [
-    SizedBox(
-      width: 10,
-    ),
-    Image.asset(icLogoOnTop, height: 40),
-    Expanded(
-      child: Align(
-        alignment: Alignment.centerRight,
-        child: Padding(
-          padding: const EdgeInsets.only(right: 10.0),
-          child: IconButton(
-            icon: Image.asset(
-              icCart,
-              width: 21,
+              children: [
+                SizedBox(
+                  width: 10,
+                ),
+                Image.asset(icLogoOnTop, height: 40),
+                Expanded(
+                  child: Align(
+                    alignment: Alignment.centerRight,
+                    child: Padding(
+                      padding: const EdgeInsets.only(right: 10.0),
+                      child: IconButton(
+                        icon: Image.asset(
+                          icCart,
+                          width: 21,
+                        ),
+                        onPressed: () {
+                          Get.to(() => const CartScreen());
+                        },
+                      ),
+                    ),
+                  ),
+                ),
+              ],
             ),
-            onPressed: () {
-              Get.to(() => const CartScreen());
-            },
-          ),
-        ),
-      ),
-    ),
-  ],
-),
-
           ],
         ),
       ),
@@ -100,18 +99,14 @@ class ProductScreen extends StatelessWidget {
                             itemBuilder: (context, index) {
                               return Column(
                                 crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [ ClipRRect(
-                                        borderRadius: const BorderRadius.only(
-                                          topLeft: Radius.circular(15.0),
-                                          topRight: Radius.circular(15.0),
-                                        ),
-                                        child: Image.network(
-                                          allproductsdata[index]['p_imgs'][0],
-                                          width: 200,
-                                          height: 210,
-                                          fit: BoxFit.cover,
-                                        ),
-                                      ),
+                                children: [
+                                  Image.network(
+                                    allproductsdata[index]['p_imgs'][0],
+                                    width: 180,
+                                    height: 210,
+                                    fit: BoxFit.cover,
+                                  ),
+                                  // const Spacer(),
                                   10.heightBox,
                                   Padding(
                                     padding: EdgeInsets.all(8),
@@ -129,8 +124,8 @@ class ProductScreen extends StatelessWidget {
                                           maxLines: 1,
                                           overflow: TextOverflow.ellipsis,
                                         ),
-                                        "${NumberFormat('#,##0').format(double.parse(allproductsdata[index]['p_price']).toInt())} Bath" 
-                                        .text
+                                        "${NumberFormat('#,##0').format(double.parse(allproductsdata[index]['p_price']).toInt())} Bath"
+                                            .text
                                             .color(greyDark1)
                                             .fontFamily(regular)
                                             .size(14)

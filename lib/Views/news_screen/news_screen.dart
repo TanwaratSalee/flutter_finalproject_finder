@@ -420,28 +420,19 @@ class NewsScreen extends StatelessWidget {
                       mainAxisSize: MainAxisSize.min,
                       crossAxisAlignment: CrossAxisAlignment.center,
                       children: [
-                        Column(
-                      mainAxisSize: MainAxisSize.min,
-                      crossAxisAlignment: CrossAxisAlignment
-                          .center, // Ensure alignment if needed
-                      children: [
+                        const SizedBox(height: 20),
                         'MATCH BY STORE'
                             .text
                             .fontFamily(medium)
                             .color(greyDark2)
                             .size(22)
                             .make(),
-                        Container(
-                          child: GestureDetector(
-                            child: Image.asset(
-                              icUndertext,
-                              width: 170,
-                            ),
-                          ),
+                        const SizedBox(height: 6),
+                        Image.asset(
+                          icUndertext,
+                          width: 170,
                         ),
-                      ],
-                    ).box.color(thinPrimaryApp).padding(EdgeInsets.symmetric(vertical: 5, horizontal: 70)).roundedLg.make(),
-                        SizedBox(height: 15),
+                        const SizedBox(height: 6),
                         SingleChildScrollView(
                           physics: const NeverScrollableScrollPhysics(),
                           child: Container(
@@ -451,30 +442,8 @@ class NewsScreen extends StatelessWidget {
                         )
                       ],
                     ),
-                    const SizedBox(height: 20),
-                    InkWell(
-                      onTap: () {
-                        Get.to(() => const MatchProductScreen());
-                      },
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          const Text('Explote More')
-                              .text
-                              .fontFamily(medium)
-                              .size(17)
-                              .color(greyDark2)
-                              .make(),
-                          10.widthBox,
-                          Image.asset(
-                            icNext,
-                            width: 17,
-                          )
-                        ],
-                      ),
-                    ),
 
-                    50.heightBox,
+                    30.heightBox,
 
                     Column(
                       mainAxisSize: MainAxisSize.min,

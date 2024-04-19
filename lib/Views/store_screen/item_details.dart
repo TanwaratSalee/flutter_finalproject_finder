@@ -25,16 +25,15 @@ class _ItemDetailsState extends State<ItemDetails> {
   late final ProductController controller;
 
   @override
-void initState() {
-  super.initState();
-  controller = Get.put(ProductController());
-  checkIsInWishlist();
-  WidgetsBinding.instance.addPostFrameCallback((_) {
-    int productPrice = int.parse(widget.data['p_price']); 
-    controller.calculateTotalPrice(productPrice);
-  });
-}
-
+  void initState() {
+    super.initState();
+    controller = Get.put(ProductController());
+    checkIsInWishlist();
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      int productPrice = int.parse(widget.data['p_price']);
+      controller.calculateTotalPrice(productPrice);
+    });
+  }
 
   void checkIsInWishlist() async {
     FirebaseFirestore.instance
@@ -91,12 +90,12 @@ void initState() {
       child: Scaffold(
         backgroundColor: whiteColor,
         appBar: AppBar(
-        //   leading: IconButton(
-        //       onPressed: () {
-        //         controller.resetValues();
-        //         Get.back();
-        //       },
-        //       icon: const Icon(Icons.arrow_back_ios)),
+          //   leading: IconButton(
+          //       onPressed: () {
+          //         controller.resetValues();
+          //         Get.back();
+          //       },
+          //       icon: const Icon(Icons.arrow_back_ios)),
           title: widget.title!.text
               .color(greyDark2)
               .fontFamily(bold)
@@ -198,27 +197,39 @@ void initState() {
                                     ? ClipOval(
                                         child: Image.network(
                                           imageUrl,
-                                          width: 50,
-                                          height: 50,
+                                          width: 60,
+                                          height: 60,
                                           fit: BoxFit.cover,
                                         ),
                                       )
                                     : SizedBox.shrink();
                               }),
                               10.widthBox,
-                              Expanded(
-                                child: Align(
-                                  alignment: Alignment.centerLeft,
-                                  child: "${widget.data['p_seller']}"
-                                      .toUpperCase()
-                                      .text
-                                      .fontFamily(medium)
-                                      .color(blackColor)
-                                      .size(18)
-                                      .make(),
-                                ),
+                              Column(
+                                children: [
+                                  Expanded(
+                                    child: Align(
+                                      alignment: Alignment.centerLeft,
+                                      child: "${widget.data['p_seller']}"
+                                          .toUpperCase()
+                                          .text
+                                          .fontFamily(medium)
+                                          .color(blackColor)
+                                          .size(18)
+                                          .make(),
+                                    ),
+                                  ),
+                                ],
                               ),
                             ],
+                          ),
+                        ),
+                        Text(
+                          '⭐ 4.9/5',
+                          style: TextStyle(
+                            fontFamily: regular,
+                            color: blackColor,
+                            fontSize: 13,
                           ),
                         ),
                         10.widthBox,
@@ -296,61 +307,102 @@ void initState() {
               ),
             )),
             Obx(
-              () => Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              () => Column(
                 children: [
-                  Row(
-                    children: [
-                      Obx(
-                        () => Row(
-                          children: [
-                            IconButton(
-                                onPressed: () {
-                                  controller.decreaseQuantity();
-                                  controller.calculateTotalPrice(
-                                      int.parse(widget.data['p_price']));
-                                },
-                                icon: const Icon(Icons.remove)),
-                            controller.quantity.value.text
-                                .size(16)
-                                .color(greyDark2)
-                                .fontFamily(bold)
-                                .make(),
-                            IconButton(
-                                onPressed: () {
-                                  controller.increaseQuantity(
-                                      int.parse(widget.data['p_quantity']));
-                                  controller.calculateTotalPrice(
-                                      int.parse(widget.data['p_price']));
-                                },
-                                icon: const Icon(Icons.add)),
-                            10.heightBox,
-                          ],
+                  Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Row(
+                      children: [
+                        Text("Size:"),
+                        Row(
+                          children: ["S", "M", "L", "XL"]
+                              .map(
+                                (size) => GestureDetector(
+                                  onTap: () {
+                                    controller.selectSize(size);
+                                  },
+                                  child: Container(
+                                    margin: EdgeInsets.symmetric(horizontal: 5),
+                                    width: 35,
+                                    height: 35,
+                                    padding: EdgeInsets.all(8),
+                                    decoration: BoxDecoration(
+                                      color:
+                                          controller.selectedSize.value == size
+                                              ? primaryApp
+                                              : whiteColor,
+                                      borderRadius: BorderRadius.circular(10),
+                                      border: Border.all(color: greyColor),
+                                    ),
+                                    child: Text(
+                                      size,
+                                      textAlign: TextAlign.center,
+                                    ),
+                                  ),
+                                ),
+                              )
+                              .toList(),
                         ),
-                      ),
-                    ],
-                  ).box.padding(const EdgeInsets.all(8)).make(),
+                      ],
+                    ),
+                  ),
                   Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      SizedBox(
-                        child: "Total price ".text.color(blackColor).make(),
-                      ),
-                      10.widthBox,
-                      "${controller.totalPrice.value}"
-                          .numCurrency
-                          .text
-                          .color(blackColor)
-                          .size(20)
-                          .fontFamily(medium)
-                          .make(),
-                      10.widthBox,
-                      SizedBox(
-                        child: "Baht: ".text.color(blackColor).make(),
-                      ),
+                      Row(
+                        children: [
+                          Obx(
+                            () => Row(
+                              children: [
+                                IconButton(
+                                    onPressed: () {
+                                      controller.decreaseQuantity();
+                                      controller.calculateTotalPrice(
+                                          int.parse(widget.data['p_price']));
+                                    },
+                                    icon: const Icon(Icons.remove)),
+                                controller.quantity.value.text
+                                    .size(16)
+                                    .color(greyDark2)
+                                    .fontFamily(bold)
+                                    .make(),
+                                IconButton(
+                                    onPressed: () {
+                                      controller.increaseQuantity(
+                                          int.parse(widget.data['p_quantity']));
+                                      controller.calculateTotalPrice(
+                                          int.parse(widget.data['p_price']));
+                                    },
+                                    icon: const Icon(Icons.add)),
+                                10.heightBox,
+                              ],
+                            ),
+                          ),
+                        ],
+                      ).box.padding(const EdgeInsets.all(8)).make(),
+                      Row(
+                        children: [
+                          SizedBox(
+                            child: "Total price ".text.color(blackColor).make(),
+                          ),
+                          10.widthBox,
+                          "${controller.totalPrice.value}"
+                              .numCurrency
+                              .text
+                              .color(blackColor)
+                              .size(20)
+                              .fontFamily(medium)
+                              .make(),
+                          10.widthBox,
+                          SizedBox(
+                            child: "Baht: ".text.color(blackColor).make(),
+                          ),
+                        ],
+                      ).box.padding(const EdgeInsets.all(8)).make(),
                     ],
-                  ).box.padding(const EdgeInsets.all(8)).make(),
+                  ).box.white.shadowSm.make(),
                 ],
-              ).box.white.shadowSm.make(),
+              ),
             ),
             SizedBox(
               width: double.infinity,

@@ -1,5 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter_finalproject/Views/cart_screen/payment2.dart';
 import 'package:flutter_finalproject/Views/collection_screen/address_controller.dart';
 import 'package:flutter_finalproject/consts/consts.dart';
 import 'package:flutter_finalproject/controllers/cart_controller.dart';
@@ -173,8 +174,12 @@ class _ShippingDetailsState extends State<ShippingDetails> {
                               ? thinPrimaryApp.withOpacity(0.2)
                               : whiteColor,
                           border: isSelected
-                              ? Border.all(color: primaryApp, width: 2,)
-                              : null,borderRadius: BorderRadius.circular(8),
+                              ? Border.all(
+                                  color: primaryApp,
+                                  width: 2,
+                                )
+                              : null,
+                          borderRadius: BorderRadius.circular(8),
                         ),
                         child: ListTile(
                           title: RichText(

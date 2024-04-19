@@ -7,6 +7,7 @@ Widget customTextField({
   bool isPass = false,
   bool readOnly = false,
   VoidCallback? onTap,
+  MaterialColor? borderColor,
 }) {
   return Column(
     crossAxisAlignment: CrossAxisAlignment.start,

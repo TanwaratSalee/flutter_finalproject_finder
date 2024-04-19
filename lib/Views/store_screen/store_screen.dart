@@ -353,7 +353,7 @@ class StoreScreen extends StatelessWidget {
         return GridView.builder(
           padding: const EdgeInsets.all(8.0),
           gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-              crossAxisCount: 2, childAspectRatio: 1 / 1.2),
+              crossAxisCount: 2, childAspectRatio: 1 / 1.1),
           itemCount: snapshot.data!.docs.length,
           itemBuilder: (BuildContext context, int index) {
             var product = snapshot.data!.docs[index];
@@ -443,13 +443,13 @@ class StoreScreen extends StatelessWidget {
           return Text('Error: ${snapshot.error}');
         }
         if (!snapshot.hasData || snapshot.data!.docs.isEmpty) {
-          return const Text('No Items');
+          return Center(child: const Text('No Items'));
         }
 
         return GridView.builder(
           padding: const EdgeInsets.all(8.0),
           gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-              crossAxisCount: 2, childAspectRatio: 1 / 1.2),
+              crossAxisCount: 2, childAspectRatio: 1 / 1.1),
           itemCount: snapshot.data!.docs.length,
           itemBuilder: (BuildContext context, int index) {
             var product = snapshot.data!.docs[index];
@@ -539,13 +539,13 @@ class StoreScreen extends StatelessWidget {
           return Text('Error: ${snapshot.error}');
         }
         if (!snapshot.hasData || snapshot.data!.docs.isEmpty) {
-          return const Text('No Items');
+          return Center(child: const Text('No Items'));
         }
 
         return GridView.builder(
           padding: const EdgeInsets.all(8.0),
           gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-              crossAxisCount: 2, childAspectRatio: 1 / 1.2),
+              crossAxisCount: 2, childAspectRatio: 1 / 1.1),
           itemCount: snapshot.data!.docs.length,
           itemBuilder: (BuildContext context, int index) {
             var product = snapshot.data!.docs[index];
@@ -635,13 +635,13 @@ class StoreScreen extends StatelessWidget {
           return Text('Error: ${snapshot.error}');
         }
         if (!snapshot.hasData || snapshot.data!.docs.isEmpty) {
-          return const Text('No Items');
+          return Center(child: const Text('No Items'));
         }
 
         return GridView.builder(
           padding: const EdgeInsets.all(8.0),
           gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-              crossAxisCount: 2, childAspectRatio: 1 / 1.2),
+              crossAxisCount: 2, childAspectRatio: 1 / 1.1),
           itemCount: snapshot.data!.docs.length,
           itemBuilder: (BuildContext context, int index) {
             var product = snapshot.data!.docs[index];
@@ -731,13 +731,13 @@ class StoreScreen extends StatelessWidget {
           return Text('Error: ${snapshot.error}');
         }
         if (!snapshot.hasData || snapshot.data!.docs.isEmpty) {
-          return const Text('No Items');
+          return Center(child: const Text('No Items'));
         }
 
         return GridView.builder(
           padding: const EdgeInsets.all(8.0),
           gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-              crossAxisCount: 2, childAspectRatio: 1 / 1.2),
+              crossAxisCount: 2, childAspectRatio: 1 / 1.1),
           itemCount: snapshot.data!.docs.length,
           itemBuilder: (BuildContext context, int index) {
             var product = snapshot.data!.docs[index];
@@ -827,13 +827,13 @@ class StoreScreen extends StatelessWidget {
           return Text('Error: ${snapshot.error}');
         }
         if (!snapshot.hasData || snapshot.data!.docs.isEmpty) {
-          return const Text('No Items');
+          return Center(child: const Text('No Items'));
         }
 
         return GridView.builder(
           padding: const EdgeInsets.all(8.0),
           gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-              crossAxisCount: 2, childAspectRatio: 1 / 1.2),
+              crossAxisCount: 2, childAspectRatio: 1 / 1.1),
           itemCount: snapshot.data!.docs.length,
           itemBuilder: (BuildContext context, int index) {
             var product = snapshot.data!.docs[index];
@@ -941,13 +941,13 @@ class StoreScreen extends StatelessWidget {
           return Text('Error: ${snapshot.error}');
         }
         if (!snapshot.hasData || snapshot.data!.docs.isEmpty) {
-          return const Text('No Items');
+          return Center(child: const Text('No Items'));
         }
 
         return GridView.builder(
           padding: const EdgeInsets.all(8.0),
           gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-              crossAxisCount: 2, childAspectRatio: 1 / 1.2),
+              crossAxisCount: 2, childAspectRatio: 1 / 1.1),
           itemCount: snapshot.data!.docs.length,
           itemBuilder: (BuildContext context, int index) {
             var product = snapshot.data!.docs[index];
@@ -1037,13 +1037,13 @@ class StoreScreen extends StatelessWidget {
           return Text('Error: ${snapshot.error}');
         }
         if (!snapshot.hasData || snapshot.data!.docs.isEmpty) {
-          return const Text('No Items');
+          return Center(child: const Text('No Items'));
         }
 
         return GridView.builder(
           padding: const EdgeInsets.all(8.0),
           gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-              crossAxisCount: 2, childAspectRatio: 1 / 1.2),
+              crossAxisCount: 2, childAspectRatio: 1 / 1.1),
           itemCount: snapshot.data!.docs.length,
           itemBuilder: (BuildContext context, int index) {
             var product = snapshot.data!.docs[index];
@@ -1133,13 +1133,13 @@ class StoreScreen extends StatelessWidget {
           return Text('Error: ${snapshot.error}');
         }
         if (!snapshot.hasData || snapshot.data!.docs.isEmpty) {
-          return const Text('No Items');
+          return Center(child: const Text('No Items'));
         }
 
         return GridView.builder(
           padding: const EdgeInsets.all(8.0),
           gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-              crossAxisCount: 2, childAspectRatio: 1 / 1.2),
+              crossAxisCount: 2, childAspectRatio: 1 / 1.1),
           itemCount: snapshot.data!.docs.length,
           itemBuilder: (BuildContext context, int index) {
             var product = snapshot.data!.docs[index];
@@ -1255,16 +1255,16 @@ Widget _buildProductMathGrids(String category) {
       // Calculate the total number of valid pairs to display
       int itemCount = validPairs.length;
 
-      return GridView.builder(
-        padding: const EdgeInsets.all(2),
-        gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-          crossAxisCount: 2,
-          childAspectRatio: 1 / 1.3,
-        ),
-        itemCount: itemCount,
-        itemBuilder: (BuildContext context, int index) {
-          // Each pair of matched products
-          var pair = validPairs[index].value;
+        return GridView.builder(
+          padding: const EdgeInsets.all(2),
+          gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+            crossAxisCount: 2,
+            childAspectRatio: 1 / 1.3,
+          ),
+          itemCount: itemCount,
+          itemBuilder: (BuildContext context, int index) {
+            // Each pair of matched products
+            var pair = validPairs[index].value;
 
           // Assuming the data structure ensures there are exactly 2 products per matched 'p_mixmatch'
           var data1 = pair[0].data() as Map<String, dynamic>;
@@ -1278,101 +1278,96 @@ Widget _buildProductMathGrids(String category) {
           String productName1 = data1['p_name'];
           String productName2 = data2['p_name'];
 
-          String productImage1 = data1['p_imgs'][0];
-          String productImage2 = data2['p_imgs'][0];
-
-          String vendorName = 'vendor_id';
-
-          return GestureDetector(
-            onTap: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(
-                  builder: (context) => MatchDetailScreen(
-                    price1: price1,
-                    price2: price2,
-                    productName1: productName1,
-                    productName2: productName2,
-                    productImage1: productImage1,
-                    productImage2: productImage2,
-                    totalPrice: totalPrice,
-                    vendorName: vendorName,
-                  ),
-                ),
-              );
-            },
-            child: Card(
-              clipBehavior: Clip.antiAlias,
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: <Widget>[
-                  Row(
-                    children: [
-                      Column(
-                        children: [
-                          Image.network(
-                            productImage1,
-                            width: 80,
-                            height: 80,
-                          ),
-                          Image.network(
-                            productImage2,
-                            width: 80,
-                            height: 80,
-                          ),
-                        ],
-                      ),
-                      Expanded(
-                        child: Padding(
-                          padding: const EdgeInsets.all(8),
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: <Widget>[
-                              const SizedBox(height: 2),
-                              Text(
-                                productName1,
-                                style: const TextStyle(fontFamily: bold),
-                              ),
-                              Text(
-                                'Price: \$${price1.toString()}',
-                                style: const TextStyle(color: Colors.grey),
-                              ),
-                              const SizedBox(height: 20),
-                              Text(
-                                productName2,
-                                style: const TextStyle(fontFamily: bold),
-                              ),
-                              Text(
-                                'Price: \$${price2.toString()}',
-                                style: const TextStyle(color: Colors.grey),
-                              ),
-                            ],
-                          ),
-                        ),
-                      ),
-                    ],
-                  ),
-                  const SizedBox(height: 10),
-                  Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 8),
-                    child: Text(
-                      'Total Price: \$${totalPrice.toString()}',
-                      style: const TextStyle(
-                        color: blackColor,
-                        fontFamily: bold,
-                      ),
+            String productImage1 = data1['p_imgs'][0];
+            String productImage2 = data2['p_imgs'][0];
+            return GestureDetector(
+              onTap: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => MatchDetailScreen(
+                      price1: price1,
+                      price2: price2,
+                      productName1: productName1,
+                      productName2: productName2,
+                      productImage1: productImage1,
+                      productImage2: productImage2,
+                      totalPrice: totalPrice,
                     ),
                   ),
-                ],
+                );
+              },
+              child: Card(
+                clipBehavior: Clip.antiAlias,
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: <Widget>[
+                    Row(
+                      children: [
+                        Column(
+                          children: [
+                            Image.network(
+                              productImage1,
+                              width: 80,
+                              height: 80,
+                            ),
+                            Image.network(
+                              productImage2,
+                              width: 80,
+                              height: 80,
+                            ),
+                          ],
+                        ),
+                        Expanded(
+                          child: Padding(
+                            padding: const EdgeInsets.all(8),
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: <Widget>[
+                                const SizedBox(height: 2),
+                                Text(
+                                  productName1,
+                                  style: const TextStyle(fontFamily: bold),
+                                ),
+                                Text(
+                                  'Price: \$${price1.toString()}',
+                                  style: const TextStyle(color: Colors.grey),
+                                ),
+                                const SizedBox(height: 20),
+                                Text(
+                                  productName2,
+                                  style: const TextStyle(fontFamily: bold),
+                                ),
+                                Text(
+                                  'Price: \$${price2.toString()}',
+                                  style: const TextStyle(color: Colors.grey),
+                                ),
+                              ],
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                    const SizedBox(height: 10),
+                    Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 8),
+                      child: Text(
+                        'Total Price: \$${totalPrice.toString()}',
+                        style: const TextStyle(
+                          color: blackColor,
+                          fontFamily: bold,
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
               ),
-            ),
-          );
-        },
-      );
-    },
-  );
-}
-
+            );
+          },
+        );
+      },
+    );
+  }
 
   Future<String> fetchSellerName(String vendorId) async {
     QuerySnapshot querySnapshot = await FirebaseFirestore.instance
