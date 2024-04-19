@@ -118,7 +118,7 @@ Widget _buildReviewShop(BuildContext context) {
 
 Widget _buildReviewHighlights() {
   return Container(
-    height: 600,
+    height: 690,
     margin: EdgeInsets.only(top: 0.5),
     child: ListView.builder(
       itemCount: 10,
@@ -131,7 +131,7 @@ Widget _buildReviewHighlights() {
 
 Widget _buildReviewHigh() {
   return Container(
-    height: 600,
+    height: 680,
     margin: EdgeInsets.only(top: 0.5),
     child: ListView.builder(
       itemCount: 10,
@@ -165,8 +165,8 @@ Widget _buildReviewCard() {
         Row(
           children: [
             CircleAvatar(
-              radius: 20,
-              backgroundImage: NetworkImage('your_image_url_here'),
+              radius: 15,
+              backgroundImage: NetworkImage('assets/images/cdLogo.png'),
             ),
             SizedBox(width: 10),
             Text('Reviewer Name',
@@ -174,22 +174,28 @@ Widget _buildReviewCard() {
           ],
         ),
         SizedBox(
-          height: 10,
+          height: 20,
         ),
-        Row(
-          children: List.generate(5, (index) {
-            return Icon(
-              index < 4 ? Icons.star : Icons.star_border,
-              color: Colors.amber,
-              size: 20,
-            );
-          }),
+        Padding(
+          padding: const EdgeInsets.fromLTRB(10, 0, 0, 0),
+          child: Row(
+            children: List.generate(5, (index) {
+              return Icon(
+                index < 4 ? Icons.star : Icons.star_border,
+                color: Colors.amber,
+                size: 20,
+              );
+            }),
+          ),
         ),
-        Text(
-          'The review text goes here...',
-          style: TextStyle(fontSize: 14),
-          maxLines: 2,
-          overflow: TextOverflow.ellipsis,
+        Padding(
+          padding: const EdgeInsets.fromLTRB(10, 0, 0, 0),
+          child: Text(
+            'The review text goes here...',
+            style: TextStyle(fontSize: 14),
+            maxLines: 2,
+            overflow: TextOverflow.ellipsis,
+          ),
         ),
       ],
     ),
@@ -214,53 +220,47 @@ Widget _buildReviewProductCard() {
       ],
     ),
     child: Row(
-      // Changed to Row to allow for side-by-side layout
       children: [
         Container(
-          // This container is for the image placeholder
-          height: 122, // Adjusted to fit within the parent container's padding
-          width: 122, // Making it square
+          height: 122,
+          width: 122,
           decoration: BoxDecoration(
-            color: Colors.grey[200], // Placeholder color
-            borderRadius:
-                BorderRadius.circular(8), // Optional: to match the card's style
+            color: Colors.grey[200],
+            borderRadius: BorderRadius.circular(8),
           ),
-          // You can add an image here using a widget like Image.network or for a placeholder use Icon
-          child: Icon(Icons.photo, color: Colors.grey[500]), // Placeholder icon
+          child: Icon(Icons.photo, color: Colors.grey[500]),
         ),
         Expanded(
-          // Using Expanded to fill the remaining space
           child: Padding(
-            padding:
-                const EdgeInsets.only(left: 10.0), // Added padding for spacing
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center, // Center vertically
-              crossAxisAlignment:
-                  CrossAxisAlignment.start, // Align text to the start
-              children: [
-                Text('Reviewer Name',
-                    style:
-                        TextStyle(fontSize: 16, fontFamily: bold)),
-                SizedBox(height: 10),
-                Row(
-                  mainAxisAlignment:
-                      MainAxisAlignment.start, // Align stars to start
-                  children: List.generate(5, (index) {
-                    return Icon(
-                      index < 4 ? Icons.star : Icons.star_border,
-                      color: Colors.amber,
-                      size: 20,
-                    );
-                  }),
-                ),
-                SizedBox(height: 10),
-                Text(
-                  'The review text goes here...',
-                  style: TextStyle(fontSize: 14),
-                  maxLines: 2,
-                  overflow: TextOverflow.ellipsis,
-                ),
-              ],
+            padding: const EdgeInsets.only(left: 10.0),
+            child: Padding(
+              padding: const EdgeInsets.fromLTRB(10, 0, 0, 0),
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text('Reviewer Name',
+                      style: TextStyle(fontSize: 16, fontFamily: bold)),
+                  SizedBox(height: 10),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    children: List.generate(5, (index) {
+                      return Icon(
+                        index < 4 ? Icons.star : Icons.star_border,
+                        color: Colors.amber,
+                        size: 20,
+                      );
+                    }),
+                  ),
+                  SizedBox(height: 10),
+                  Text(
+                    'The review text goes here...',
+                    style: TextStyle(fontSize: 14),
+                    maxLines: 2,
+                    overflow: TextOverflow.ellipsis,
+                  ),
+                ],
+              ),
             ),
           ),
         ),

@@ -2,7 +2,7 @@ name: flutter_finalproject
 description: "A new Flutter project."
 # The following line prevents the package from being accidentally published to
 # pub.dev using `flutter pub publish`. This is preferred for private packages.
-publish_to: 'none' # Remove this line if you wish to publish to pub.dev
+publish_to: "none" # Remove this line if you wish to publish to pub.dev
 
 # The following defines the version and build number for your application.
 # A version number is three numbers separated by dots, like 1.2.43
@@ -19,7 +19,7 @@ publish_to: 'none' # Remove this line if you wish to publish to pub.dev
 version: 1.0.0+1
 
 environment:
-  sdk: '>=3.2.3 <4.0.0'
+  sdk: ">=3.2.3 <4.0.0"
 
 # Dependencies specify other packages that your package needs in order to work.
 # To automatically upgrade your package dependencies to the latest versions
@@ -41,26 +41,22 @@ dependencies:
   image_picker: ^1.0.7
   flutter_card_swiper: ^7.0.0
   shared_preferences: ^2.2.2
-  omise_flutter : ^0.1.6
-  flutter_credit_card : ^4.0.1
+  omise_flutter: ^0.1.6
+  flutter_credit_card: ^4.0.1
   intl: ^0.18.1
   http: ^0.13.6
   flutter_svg: ^2.0.9
   google_sign_in: ^6.2.1
   flutter_facebook_auth: ^6.0.4
-  flutter_marquee: ^2.0.1 
+  flutter_marquee: ^2.0.1
 
-  path: ^1.8.0 
+  path: ^1.8.0
   qr_flutter: ^4.0.0
-  
 
   pattern_formatter: ^3.0.0
-
+  material_design_icons_flutter: ^5.0.6295
   cached_network_image: ^3.1.0
-  
 
-
- 
 dev_dependencies:
   flutter_test:
     sdk: flutter
@@ -77,7 +73,6 @@ dev_dependencies:
 
 # The following section is specific to Flutter packages.
 flutter:
-
   # The following line ensures that the Material Icons font is
   # included with your application, so that you can use the icons in
   # the material Icons class.
@@ -119,15 +114,15 @@ flutter:
 
     - family: Roboto-Bold
       fonts:
-        - asset: assets/fonts/Roboto-Bold.ttf    
+        - asset: assets/fonts/Roboto-Bold.ttf
 
     - family: Roboto-Black
       fonts:
-        - asset: assets/fonts/Roboto-Black.ttf 
-        
+        - asset: assets/fonts/Roboto-Black.ttf
+
     - family: Roboto-Medium
       fonts:
-        - asset: assets/fonts/Roboto-Medium.ttf     
+        - asset: assets/fonts/Roboto-Medium.ttf
 
   # fonts:
   #   - family: Schyler

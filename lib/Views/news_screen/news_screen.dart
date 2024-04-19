@@ -419,19 +419,19 @@ class NewsScreen extends StatelessWidget {
                       mainAxisSize: MainAxisSize.min,
                       crossAxisAlignment: CrossAxisAlignment.center,
                       children: [
-                        const SizedBox(height: 20),
+                        const SizedBox(height: 50),
                         'MATCH BY STORE'
                             .text
                             .fontFamily(medium)
                             .color(greyDark2)
                             .size(22)
                             .make(),
-                        const SizedBox(height: 6),
+                        const SizedBox(height: 10),
                         Image.asset(
                           icUndertext,
                           width: 170,
                         ),
-                        const SizedBox(height: 6),
+                        const SizedBox(height: 8),
                         SingleChildScrollView(
                           physics: const NeverScrollableScrollPhysics(),
                           child: Container(
@@ -441,8 +441,29 @@ class NewsScreen extends StatelessWidget {
                         )
                       ],
                     ),
+                    InkWell(
+                      onTap: () {
+                        Get.to(() => const MatchDetailScreen());
+                      },
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          const Text('Explote More')
+                              .text
+                              .fontFamily(medium)
+                              .size(17)
+                              .color(greyDark2)
+                              .make(),
+                          10.widthBox,
+                          Image.asset(
+                            icNext,
+                            width: 12,
+                          )
+                        ],
+                      ),
+                    ),
 
-                    30.heightBox,
+                    50.heightBox,
 
                     Column(
                       mainAxisSize: MainAxisSize.min,

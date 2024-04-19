@@ -37,9 +37,19 @@ class _SignUpScreenState extends State<SignUpScreen> {
     if (emailController.text.isNotEmpty &&
         nameController.text.isNotEmpty &&
         passwordController.text.isNotEmpty &&
-        passwordRetypeController.text == passwordController.text) {
+        passwordController.text == passwordRetypeController.text &&
+        passwordController.text[0] ==
+            passwordController.text[0].toUpperCase() &&
+        passwordController.text.length >= 8 &&
+        !passwordController.text.contains(RegExp(r'[!@#$%^&*(),.?":{}|<>]'))) {
       return true;
     } else {
+      // Show VxToast and highlight red border for invalid fields
+      VxToast.show(
+        context,
+        msg: 'Check your password!',
+        // bgColor: Colors.red,
+      );
       return false;
     }
   }
@@ -50,7 +60,12 @@ class _SignUpScreenState extends State<SignUpScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: whiteColor,
-      appBar: AppBar(title: const Text('Create Account').text.size(24).fontFamily(medium).make()),
+      appBar: AppBar(
+          title: const Text('Create Account')
+              .text
+              .size(24)
+              .fontFamily(medium)
+              .make()),
       body: SingleChildScrollView(
         padding: const EdgeInsets.all(15),
         child: Column(
@@ -74,6 +89,14 @@ class _SignUpScreenState extends State<SignUpScreen> {
               controller: passwordController,
               isPass: true,
               readOnly: false,
+              borderColor: passwordController.text.isNotEmpty &&
+                      (passwordController.text[0] !=
+                              passwordController.text[0].toUpperCase() ||
+                          passwordController.text.length < 8 ||
+                          passwordController.text
+                              .contains(RegExp(r'[!@#$%^&*(),.?":{}|<>]')))
+                  ? Colors.red
+                  : null,
             ),
             const SizedBox(height: 3),
             customTextField(
@@ -81,6 +104,10 @@ class _SignUpScreenState extends State<SignUpScreen> {
               controller: passwordRetypeController,
               isPass: true,
               readOnly: false,
+              borderColor: passwordRetypeController.text.isNotEmpty &&
+                      passwordRetypeController.text != passwordController.text
+                  ? Colors.red
+                  : null,
             ),
             const SizedBox(height: 20),
             Row(
@@ -132,22 +159,22 @@ class _SignUpScreenState extends State<SignUpScreen> {
                     title: 'Next',
                     textColor: whiteColor,
                     onPress: isCheck
-                      ? () {
-                          // Validate input before changing the screen
-                          if (validateInput()) {
-                            Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                builder: (context) => PersonalDetailsScreen(
-                                  email: emailController.text,
-                                  name: nameController.text,
-                                  password: passwordController.text,
+                        ? () {
+                            // Validate input before changing the screen
+                            if (validateInput()) {
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (context) => PersonalDetailsScreen(
+                                    email: emailController.text,
+                                    name: nameController.text,
+                                    password: passwordController.text,
+                                  ),
                                 ),
-                              ),
-                            );
+                              );
+                            }
                           }
-                        }
-                      : null,
+                        : null,
                   ),
           ],
         ),

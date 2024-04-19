@@ -354,7 +354,7 @@ class StoreScreen extends StatelessWidget {
         return GridView.builder(
           padding: const EdgeInsets.all(8.0),
           gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-              crossAxisCount: 2, childAspectRatio: 1 / 1.2),
+              crossAxisCount: 2, childAspectRatio: 1 / 1.1),
           itemCount: snapshot.data!.docs.length,
           itemBuilder: (BuildContext context, int index) {
             var product = snapshot.data!.docs[index];
@@ -444,13 +444,13 @@ class StoreScreen extends StatelessWidget {
           return Text('Error: ${snapshot.error}');
         }
         if (!snapshot.hasData || snapshot.data!.docs.isEmpty) {
-          return const Text('No Items');
+          return Center(child: const Text('No Items'));
         }
 
         return GridView.builder(
           padding: const EdgeInsets.all(8.0),
           gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-              crossAxisCount: 2, childAspectRatio: 1 / 1.2),
+              crossAxisCount: 2, childAspectRatio: 1 / 1.1),
           itemCount: snapshot.data!.docs.length,
           itemBuilder: (BuildContext context, int index) {
             var product = snapshot.data!.docs[index];
@@ -540,13 +540,13 @@ class StoreScreen extends StatelessWidget {
           return Text('Error: ${snapshot.error}');
         }
         if (!snapshot.hasData || snapshot.data!.docs.isEmpty) {
-          return const Text('No Items');
+          return Center(child: const Text('No Items'));
         }
 
         return GridView.builder(
           padding: const EdgeInsets.all(8.0),
           gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-              crossAxisCount: 2, childAspectRatio: 1 / 1.2),
+              crossAxisCount: 2, childAspectRatio: 1 / 1.1),
           itemCount: snapshot.data!.docs.length,
           itemBuilder: (BuildContext context, int index) {
             var product = snapshot.data!.docs[index];
@@ -636,13 +636,13 @@ class StoreScreen extends StatelessWidget {
           return Text('Error: ${snapshot.error}');
         }
         if (!snapshot.hasData || snapshot.data!.docs.isEmpty) {
-          return const Text('No Items');
+          return Center(child: const Text('No Items'));
         }
 
         return GridView.builder(
           padding: const EdgeInsets.all(8.0),
           gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-              crossAxisCount: 2, childAspectRatio: 1 / 1.2),
+              crossAxisCount: 2, childAspectRatio: 1 / 1.1),
           itemCount: snapshot.data!.docs.length,
           itemBuilder: (BuildContext context, int index) {
             var product = snapshot.data!.docs[index];
@@ -732,13 +732,13 @@ class StoreScreen extends StatelessWidget {
           return Text('Error: ${snapshot.error}');
         }
         if (!snapshot.hasData || snapshot.data!.docs.isEmpty) {
-          return const Text('No Items');
+          return Center(child: const Text('No Items'));
         }
 
         return GridView.builder(
           padding: const EdgeInsets.all(8.0),
           gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-              crossAxisCount: 2, childAspectRatio: 1 / 1.2),
+              crossAxisCount: 2, childAspectRatio: 1 / 1.1),
           itemCount: snapshot.data!.docs.length,
           itemBuilder: (BuildContext context, int index) {
             var product = snapshot.data!.docs[index];
@@ -828,13 +828,13 @@ class StoreScreen extends StatelessWidget {
           return Text('Error: ${snapshot.error}');
         }
         if (!snapshot.hasData || snapshot.data!.docs.isEmpty) {
-          return const Text('No Items');
+          return Center(child: const Text('No Items'));
         }
 
         return GridView.builder(
           padding: const EdgeInsets.all(8.0),
           gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-              crossAxisCount: 2, childAspectRatio: 1 / 1.2),
+              crossAxisCount: 2, childAspectRatio: 1 / 1.1),
           itemCount: snapshot.data!.docs.length,
           itemBuilder: (BuildContext context, int index) {
             var product = snapshot.data!.docs[index];
@@ -942,13 +942,13 @@ class StoreScreen extends StatelessWidget {
           return Text('Error: ${snapshot.error}');
         }
         if (!snapshot.hasData || snapshot.data!.docs.isEmpty) {
-          return const Text('No Items');
+          return Center(child: const Text('No Items'));
         }
 
         return GridView.builder(
           padding: const EdgeInsets.all(8.0),
           gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-              crossAxisCount: 2, childAspectRatio: 1 / 1.2),
+              crossAxisCount: 2, childAspectRatio: 1 / 1.1),
           itemCount: snapshot.data!.docs.length,
           itemBuilder: (BuildContext context, int index) {
             var product = snapshot.data!.docs[index];
@@ -1038,13 +1038,13 @@ class StoreScreen extends StatelessWidget {
           return Text('Error: ${snapshot.error}');
         }
         if (!snapshot.hasData || snapshot.data!.docs.isEmpty) {
-          return const Text('No Items');
+          return Center(child: const Text('No Items'));
         }
 
         return GridView.builder(
           padding: const EdgeInsets.all(8.0),
           gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-              crossAxisCount: 2, childAspectRatio: 1 / 1.2),
+              crossAxisCount: 2, childAspectRatio: 1 / 1.1),
           itemCount: snapshot.data!.docs.length,
           itemBuilder: (BuildContext context, int index) {
             var product = snapshot.data!.docs[index];
@@ -1134,13 +1134,13 @@ class StoreScreen extends StatelessWidget {
           return Text('Error: ${snapshot.error}');
         }
         if (!snapshot.hasData || snapshot.data!.docs.isEmpty) {
-          return const Text('No Items');
+          return Center(child: const Text('No Items'));
         }
 
         return GridView.builder(
           padding: const EdgeInsets.all(8.0),
           gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-              crossAxisCount: 2, childAspectRatio: 1 / 1.2),
+              crossAxisCount: 2, childAspectRatio: 1 / 1.1),
           itemCount: snapshot.data!.docs.length,
           itemBuilder: (BuildContext context, int index) {
             var product = snapshot.data!.docs[index];
@@ -1254,7 +1254,7 @@ class StoreScreen extends StatelessWidget {
           padding: const EdgeInsets.all(2),
           gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
             crossAxisCount: 2,
-            childAspectRatio: 1 / 1.3,
+            childAspectRatio: 1 / 1,
           ),
           itemCount: itemCount,
           itemBuilder: (BuildContext context, int index) {
@@ -1293,6 +1293,7 @@ class StoreScreen extends StatelessWidget {
                 );
               },
               child: Card(
+                color: whiteColor,
                 clipBehavior: Clip.antiAlias,
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,

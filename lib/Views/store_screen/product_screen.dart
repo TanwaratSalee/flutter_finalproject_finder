@@ -1,4 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:flutter_finalproject/Views/cart_screen/cart_screen.dart';
 import 'package:flutter_finalproject/Views/store_screen/item_details.dart';
 import 'package:flutter_finalproject/Views/collection_screen/loading_indicator.dart';
@@ -13,14 +15,18 @@ import 'dart:math' as math;
 
 import 'package:intl/intl.dart';
 
-class ProductScreen extends StatelessWidget {
-  const ProductScreen({super.key});
+class ProductScreen extends StatefulWidget {
+  const ProductScreen({Key? key});
+
+  @override
+  State<ProductScreen> createState() => _ProductScreenState();
+}
+
+class _ProductScreenState extends State<ProductScreen> {
+  var controller = Get.find<NewsController>();
 
   @override
   Widget build(BuildContext context) {
-    var allproducts = '';
-    var controller = Get.find<NewsController>();
-
     return Scaffold(
       appBar: AppBar(
         backgroundColor: whiteColor,
@@ -58,110 +64,116 @@ class ProductScreen extends StatelessWidget {
       body: Container(
         padding: const EdgeInsets.all(12),
         color: whiteColor,
-        width: context.screenWidth,
-        height: context.screenHeight,
         child: SafeArea(
-            child: Column(
-          children: [
-            Expanded(
-              child: SingleChildScrollView(
-                physics: const BouncingScrollPhysics(),
-                child: Column(
-                  children: [
-                    Align(
-                        alignment: Alignment.centerLeft,
-                        child: allproducts.text
-                            .fontFamily(regular)
-                            .color(greyDark2)
-                            .size(18)
-                            .make()),
-                    StreamBuilder(
-                      stream: FirestoreServices.allproducts(),
-                      builder: (BuildContext context,
-                          AsyncSnapshot<QuerySnapshot> snapshot) {
-                        if (!snapshot.hasData) {
-                          return Center(
-                            child: loadingIndicator(),
-                          );
-                        } else {
-                          var allproductsdata = snapshot.data!.docs;
-                          return GridView.builder(
-                            physics: const NeverScrollableScrollPhysics(),
-                            shrinkWrap: true,
-                            itemCount: allproductsdata.length,
-                            gridDelegate:
-                                const SliverGridDelegateWithFixedCrossAxisCount(
-                              crossAxisCount: 2,
-                              mainAxisSpacing: 18,
-                              crossAxisSpacing: 12,
-                              mainAxisExtent: 280,
-                            ),
-                            itemBuilder: (context, index) {
-                              return Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  Image.network(
-                                    allproductsdata[index]['p_imgs'][0],
-                                    width: 180,
-                                    height: 210,
-                                    fit: BoxFit.cover,
-                                  ),
-                                  // const Spacer(),
-                                  10.heightBox,
-                                  Padding(
-                                    padding: EdgeInsets.all(8),
-                                    child: Column(
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment.start,
-                                      children: [
-                                        Text(
-                                          "${allproductsdata[index]['p_name']}",
-                                          style: TextStyle(
-                                            fontFamily: medium,
-                                            fontSize: 17,
-                                            color: blackColor,
-                                          ),
-                                          maxLines: 1,
-                                          overflow: TextOverflow.ellipsis,
-                                        ),
-                                        "${NumberFormat('#,##0').format(double.parse(allproductsdata[index]['p_price']).toInt())} Bath"
-                                            .text
-                                            .color(greyDark1)
-                                            .fontFamily(regular)
-                                            .size(14)
-                                            .make(),
-                                      ],
+          child: Column(
+            children: [
+              Container(
+                height: 680,
+                child: SingleChildScrollView(
+                  physics: const BouncingScrollPhysics(),
+                  child: Column(
+                    children: [
+                      // Align(
+                      //   alignment: Alignment.centerLeft,
+                      //   child: const Text(
+                      //     'All Products',
+                      //     style: TextStyle(
+                      //       fontFamily: regular,
+                      //       color: greyDark2,
+                      //       fontSize: 18,
+                      //     ),
+                      //   ),
+                      // ),
+                      StreamBuilder(
+                        stream: FirestoreServices.allproducts(),
+                        builder: (
+                          BuildContext context,
+                          AsyncSnapshot<QuerySnapshot> snapshot,
+                        ) {
+                          if (!snapshot.hasData) {
+                            return Center(
+                              child: loadingIndicator(),
+                            );
+                          } else {
+                            var allproductsdata = snapshot.data!.docs;
+                            return GridView.builder(
+                              physics: const NeverScrollableScrollPhysics(),
+                              shrinkWrap: true,
+                              itemCount: allproductsdata.length,
+                              gridDelegate:
+                                  const SliverGridDelegateWithFixedCrossAxisCount(
+                                crossAxisCount: 2,
+                                mainAxisSpacing: 18,
+                                crossAxisSpacing: 12,
+                                mainAxisExtent: 280,
+                              ),
+                              itemBuilder: (context, index) {
+                                return Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    Image.network(
+                                      allproductsdata[index]['p_imgs'][0],
+                                      width: 210,
+                                      height: 210,
+                                      fit: BoxFit.cover,
                                     ),
-                                  )
-                                ],
-                              )
-                                  .box
-                                  .white
-                                  .margin(
-                                      const EdgeInsets.symmetric(horizontal: 2))
-                                  .shadowSm
-                                  .rounded
-                                  // .padding(const EdgeInsets.all(12))
-                                  .make()
-                                  .onTap(() {
-                                Get.to(() => ItemDetails(
-                                      title:
-                                          "${allproductsdata[index]['p_name']}",
-                                      data: allproductsdata[index],
-                                    ));
-                              });
-                            },
-                          );
-                        }
-                      },
-                    ),
-                    const SizedBox(height: 20),
-                  ],
+                                    const SizedBox(height: 10),
+                                    Padding(
+                                      padding: const EdgeInsets.all(8),
+                                      child: Column(
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.start,
+                                        children: [
+                                          Text(
+                                            "${allproductsdata[index]['p_name']}",
+                                            style: const TextStyle(
+                                              fontFamily: medium,
+                                              fontSize: 17,
+                                              color: blackColor,
+                                            ),
+                                            maxLines: 1,
+                                            overflow: TextOverflow.ellipsis,
+                                          ),
+                                          Text(
+                                            "${NumberFormat('#,##0').format(double.parse(allproductsdata[index]['p_price']).toInt())} Bath",
+                                            style: const TextStyle(
+                                              color: greyDark1,
+                                              fontFamily: regular,
+                                              fontSize: 14,
+                                            ),
+                                          ),
+                                        ],
+                                      ),
+                                    ),
+                                  ],
+                                )
+                                    .box
+                                    .white
+                                    .margin(const EdgeInsets.symmetric(
+                                        horizontal: 2))
+                                    .shadowSm
+                                    .rounded
+                                    .make()
+                                    .onTap(() {
+                                  Get.to(() => ItemDetails(
+                                        title:
+                                            "${allproductsdata[index]['p_name']}",
+                                        data: allproductsdata[index],
+                                      ));
+                                });
+                              },
+                            );
+                          }
+                        },
+                      ),
+                      const SizedBox(height: 20),
+                    ],
+                  ),
                 ),
               ),
-            ),
-          ],
-        )),
+            ],
+          ),
+        ),
       ),
     );
   }
